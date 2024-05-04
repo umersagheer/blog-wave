@@ -1,4 +1,6 @@
+import 'package:blog_wave/core/theme/app_pallete.dart';
 import 'package:blog_wave/features/auth/presentation/widgets/auth_field.dart';
+import 'package:blog_wave/features/auth/presentation/widgets/auth_gradient_button.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -11,22 +13,38 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Sign Up Page',
+            const Text(
+              'Sign Up',
               style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 30),
-            AuthField(hintText: 'Name'),
-            SizedBox(height: 10),
-            AuthField(hintText: 'Email'),
-            SizedBox(height: 10),
-            AuthField(hintText: 'Password'),
+            const SizedBox(height: 30),
+            const AuthField(hintText: 'Name'),
+            const SizedBox(height: 10),
+            const AuthField(hintText: 'Email'),
+            const SizedBox(height: 10),
+            const AuthField(hintText: 'Password'),
+            const SizedBox(height: 20),
+            const AuthGradientButton(text: "Sign Up"),
+            const SizedBox(height: 10),
+            RichText(
+              text: TextSpan(
+                  text: "Already have an account? ",
+                  style: Theme.of(context).textTheme.titleMedium,
+                  children: [
+                    TextSpan(
+                      text: "Sign In",
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: AppPallete.gradient2,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ]),
+            ),
           ],
         ),
       ),
