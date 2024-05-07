@@ -16,7 +16,8 @@ class AuthField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: hintText,
+        labelText: hintText,
+        labelStyle: const TextStyle(fontSize: 18),
       ),
       validator: (value) => value!.isEmpty ? '$hintText is missing!' : null,
       obscureText: isObscureText,
