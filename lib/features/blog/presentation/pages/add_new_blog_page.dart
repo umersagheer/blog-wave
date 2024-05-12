@@ -1,5 +1,4 @@
 import 'package:blog_wave/core/theme/app_pallete.dart';
-import 'package:blog_wave/core/theme/theme.dart';
 import 'package:blog_wave/features/blog/presentation/widgets/blog_editor.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
