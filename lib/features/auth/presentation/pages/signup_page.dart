@@ -72,10 +72,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     text: "Sign Up",
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        context.read<AuthBloc>().add(AuthSignUp(
-                            email: emailController.text.trim(),
-                            name: nameController.text.trim(),
-                            password: passwordController.text.trim()));
+                        context.read<AuthBloc>().add(
+                              AuthSignUp(
+                                email: emailController.text.trim(),
+                                name: nameController.text.trim(),
+                                password: passwordController.text.trim(),
+                              ),
+                            );
                       }
                     },
                   ),
