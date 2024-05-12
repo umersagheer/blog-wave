@@ -1,6 +1,6 @@
 import 'package:blog_wave/core/error/failures.dart';
 import 'package:blog_wave/core/usecase/usecase.dart';
-import 'package:blog_wave/features/auth/domain/entities/user.dart';
+import 'package:blog_wave/core/entities/user.dart';
 import 'package:blog_wave/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
 
