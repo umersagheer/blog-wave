@@ -49,7 +49,7 @@ class _SignInPageState extends State<SignInPage> {
                 isObscureText: true,
               ),
               const SizedBox(height: 20),
-              const AuthGradientButton(text: "Sign In"),
+              AuthGradientButton(text: "Sign In", onPressed: () {}),
               const SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
