@@ -1,14 +1,17 @@
-import 'package:blog_wave/core/secrets/app_secrets.dart';
 import 'package:blog_wave/core/theme/theme.dart';
+import 'package:blog_wave/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_wave/features/auth/presentation/pages/signin_page.dart';
+import 'package:blog_wave/init_dependencies.dart';
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final supabase = await Supabase.initialize(
-      url: AppSecrets.supabaseUrl, anonKey: AppSecrets.supabaseKey);
-  runApp(const MainApp());
+  await initDependencies();
+  runApp(MultiBlocProvider(
+    providers: [BlocProvider(create: (_) => serviceLocator<AuthBloc>())],
+    child: const MainApp(),
+  ));
 }
 
 class MainApp extends StatelessWidget {
