@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:dotted_border/dotted_border.dart';
+
 import 'package:blog_wave/core/theme/app_pallete.dart';
 import 'package:blog_wave/features/blog/presentation/widgets/blog_editor.dart';
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/material.dart';
 
 class AddNewBlogPage extends StatefulWidget {
   static route() =>
@@ -43,22 +44,27 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              DottedBorder(
-                color: AppPallete.borderColor,
-                dashPattern: const [15, 5],
-                radius: const Radius.circular(10),
-                borderType: BorderType.RRect,
-                strokeCap: StrokeCap.round,
-                child: Container(
-                  height: 150,
-                  width: double.infinity,
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.folder_open, size: 50),
-                      SizedBox(height: 10),
-                      Text('Select Image from Gallery'),
-                    ],
+              GestureDetector(
+                onTap: () {
+                  // selectImage();
+                },
+                child: DottedBorder(
+                  color: AppPallete.borderColor,
+                  dashPattern: const [15, 5],
+                  radius: const Radius.circular(10),
+                  borderType: BorderType.RRect,
+                  strokeCap: StrokeCap.round,
+                  child: Container(
+                    height: 150,
+                    width: double.infinity,
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.folder_open, size: 50),
+                        SizedBox(height: 10),
+                        Text('Select Image from Gallery'),
+                      ],
+                    ),
                   ),
                 ),
               ),

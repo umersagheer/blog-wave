@@ -1,4 +1,5 @@
 import 'package:blog_wave/core/common/cubits/app_user/app_user_cubit.dart';
+import 'package:blog_wave/core/common/screens/onboarding_screen.dart';
 import 'package:blog_wave/core/theme/theme.dart';
 import 'package:blog_wave/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_wave/features/auth/presentation/pages/signin_page.dart';
