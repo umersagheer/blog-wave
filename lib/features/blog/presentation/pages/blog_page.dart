@@ -21,6 +21,12 @@ class BlogPage extends StatelessWidget {
           ),
         ],
       ),
+      body: const Center(
+        child: Text(
+          "No blogs Yet!",
+          style: TextStyle(fontSize: 30),
+        ),
+      ),
     );
   }
 }

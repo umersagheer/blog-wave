@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:blog_wave/core/error/failures.dart';
-import 'package:blog_wave/features/blog/data/models/blog_model.dart';
 import 'package:blog_wave/features/blog/domain/entitites/blog.dart';
 import 'package:fpdart/fpdart.dart';
 

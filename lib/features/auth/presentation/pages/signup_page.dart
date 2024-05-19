@@ -1,3 +1,4 @@
+import 'package:blog_wave/core/common/screens/onboarding_screen.dart';
 import 'package:blog_wave/core/common/widgets/loader.dart';
 import 'package:blog_wave/core/theme/app_pallete.dart';
 import 'package:blog_wave/core/utils/show_snackbar.dart';
@@ -79,6 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 password: passwordController.text.trim(),
                               ),
                             );
+                        Navigator.push(context, OnBoardingScreen.route());
                       }
                     },
                   ),
