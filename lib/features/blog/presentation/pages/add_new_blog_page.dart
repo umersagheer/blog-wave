@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:blog_wave/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:blog_wave/core/common/widgets/loader.dart';
+import 'package:blog_wave/core/constants/constants.dart';
 import 'package:blog_wave/core/utils/pick_image.dart';
 import 'package:blog_wave/core/utils/show_snackbar.dart';
 import 'package:blog_wave/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:blog_wave/features/blog/presentation/pages/blog_page.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 
@@ -55,8 +55,6 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
               topics: selectedTopics,
             ),
           );
-      print(userId + "userid");
-      print("im from upload blog inside the if of formkey");
     }
   }
 
@@ -85,7 +83,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
       body: BlocConsumer<BlogBloc, BlogState>(listener: (context, state) {
         if (state is BlogFailure) {
           showSnackBar(context, state.error);
-        } else if (state is BlogSuccess) {
+        } else if (state is BlogUploadSuccess) {
           Navigator.pushAndRemoveUntil(
             context,
             BlogPage.route(),
@@ -147,13 +145,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: [
-                        'Technology',
-                        'Business',
-                        'Entertainment',
-                        'Sports',
-                        'Programming'
-                      ]
+                      children: Constants.topics
                           .map(
                             (e) => Padding(
                               padding: const EdgeInsets.all(8.0),
