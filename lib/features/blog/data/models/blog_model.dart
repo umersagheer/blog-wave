@@ -3,15 +3,15 @@ import 'dart:js_interop';
 import 'package:blog_wave/features/blog/domain/entitites/blog.dart';
 
 class BlogModel extends Blog {
-  BlogModel({
-    required super.id,
-    required super.title,
-    required super.userId,
-    required super.content,
-    required super.imageURL,
-    required super.topics,
-    required super.updatedAt,
-  });
+  BlogModel(
+      {required super.id,
+      required super.title,
+      required super.userId,
+      required super.content,
+      required super.imageURL,
+      required super.topics,
+      required super.updatedAt,
+      super.posterName});
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
@@ -39,15 +39,15 @@ class BlogModel extends Blog {
     );
   }
 
-  BlogModel copyWith({
-    String? id,
-    String? title,
-    String? userId,
-    String? content,
-    String? imageURL,
-    List<String>? topics,
-    DateTime? updatedAt,
-  }) {
+  BlogModel copyWith(
+      {String? id,
+      String? title,
+      String? userId,
+      String? content,
+      String? imageURL,
+      List<String>? topics,
+      DateTime? updatedAt,
+      String? posterName}) {
     return BlogModel(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -56,6 +56,7 @@ class BlogModel extends Blog {
       imageURL: imageURL ?? this.imageURL,
       topics: topics ?? this.topics,
       updatedAt: updatedAt ?? this.updatedAt,
+      posterName: posterName ?? this.posterName,
     );
   }
 }
