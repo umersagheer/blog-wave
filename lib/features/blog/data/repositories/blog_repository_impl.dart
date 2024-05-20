@@ -70,18 +70,15 @@ class BlogRepositoryImpl implements BlogRepository {
         topics: topics,
         updatedAt: DateTime.now(),
       );
-
       final imageURL = await blogRemoteDataSource.uploadBlogImage(
         image: image,
         blog: blogModel,
       );
-
       blogModel = blogModel.copyWith(
         imageURL: imageURL,
       );
 
       final uploadedBlog = await blogRemoteDataSource.uploadBlog(blogModel);
-
       return Right(uploadedBlog);
     } on ServerException catch (e) {
       return left(Failure(e.message));
