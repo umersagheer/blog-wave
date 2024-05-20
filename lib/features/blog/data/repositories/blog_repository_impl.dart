@@ -1,5 +1,5 @@
-import 'dart:io';
-
+import 'package:image_picker/image_picker.dart';
+import 'package:universal_io/io.dart';
 import 'package:blog_wave/core/constants/constants.dart';
 import 'package:blog_wave/core/error/exceptions.dart';
 import 'package:blog_wave/core/error/failures.dart';
@@ -9,7 +9,7 @@ import 'package:blog_wave/features/blog/data/datasources/blog_remote_data_source
 import 'package:blog_wave/features/blog/data/models/blog_model.dart';
 import 'package:blog_wave/features/blog/domain/entitites/blog.dart';
 import 'package:blog_wave/features/blog/domain/repositories/blog_repository.dart';
-import 'package:fpdart/src/either.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:uuid/uuid.dart';
 
 class BlogRepositoryImpl implements BlogRepository {
@@ -54,7 +54,7 @@ class BlogRepositoryImpl implements BlogRepository {
     required String title,
     required String userId,
     required String content,
-    required File image,
+    required XFile image,
     required List<String> topics,
   }) async {
     try {
@@ -95,6 +95,18 @@ class BlogRepositoryImpl implements BlogRepository {
       final blogs = await blogRemoteDataSource.getAllBlogs();
       blogLocalDataSource.uploadLocalBlogs(blogs: blogs);
       return right(blogs);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  Future<Either<Failure, String>> deleteBlog(String id) async {
+    try {
+      if (!await (connectionChecker.isConnected)) {
+        return right("No Network Available");
+      }
+      final message = await blogRemoteDataSource.deleteBlog(id);
+      return right(message);
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }

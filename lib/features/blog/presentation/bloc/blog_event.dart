@@ -7,7 +7,7 @@ final class BlogUpload extends BlogEvent {
   final String title;
   final String userId;
   final String content;
-  final File image;
+  final XFile image;
   final List<String> topics;
 
   BlogUpload({
@@ -17,6 +17,11 @@ final class BlogUpload extends BlogEvent {
     required this.image,
     required this.topics,
   });
+}
+
+final class BlogDelete extends BlogEvent {
+  final String id;
+  BlogDelete({required this.id});
 }
 
 final class BlogFetchAllBlogs extends BlogEvent {}

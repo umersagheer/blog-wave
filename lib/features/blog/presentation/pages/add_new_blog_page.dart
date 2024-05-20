@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:blog_wave/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:blog_wave/core/common/widgets/loader.dart';
 import 'package:blog_wave/core/constants/constants.dart';
@@ -13,6 +11,8 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:blog_wave/core/theme/app_pallete.dart';
 import 'package:blog_wave/features/blog/presentation/widgets/blog_editor.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:universal_io/io.dart';
 
 class AddNewBlogPage extends StatefulWidget {
   static route() =>
@@ -29,13 +29,15 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
   final contentController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   List<String> selectedTopics = [];
+  XFile? imageToUpload;
   File? image;
 
   void selectImage() async {
     final pickedImage = await pickImage();
     if (pickedImage != null) {
       setState(() {
-        image = pickedImage;
+        image = File(pickedImage.path);
+        imageToUpload = pickedImage;
       });
     }
   }
@@ -51,7 +53,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
               title: titleController.text.trim(),
               userId: userId,
               content: contentController.text.trim(),
-              image: image!,
+              image: imageToUpload!,
               topics: selectedTopics,
             ),
           );

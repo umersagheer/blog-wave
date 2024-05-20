@@ -4,6 +4,7 @@ import 'package:blog_wave/core/usecase/usecase.dart';
 import 'package:blog_wave/features/blog/domain/entitites/blog.dart';
 import 'package:blog_wave/features/blog/domain/repositories/blog_repository.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UploadBlog implements UseCase<Blog, UploadBlogParams> {
   final BlogRepository blogRepository;
@@ -25,7 +26,7 @@ class UploadBlogParams {
   final String title;
   final String userId;
   final String content;
-  final File image;
+  final XFile image;
   final List<String> topics;
 
   UploadBlogParams({

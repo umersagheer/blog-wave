@@ -20,3 +20,8 @@ final class BlogsDisplaySuccess extends BlogState {
   final List<Blog> blogs;
   BlogsDisplaySuccess(this.blogs);
 }
+
+final class BlogsDeleteSuccess extends BlogState {
+  final String message;
+  BlogsDeleteSuccess(this.message);
+}

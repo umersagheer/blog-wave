@@ -1,5 +1,3 @@
-import 'dart:js_interop';
-
 import 'package:blog_wave/features/blog/domain/entitites/blog.dart';
 
 class BlogModel extends Blog {

@@ -30,7 +30,7 @@ class _SignUpPageState extends State<SignUpPage> {
     nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
-    super.dispose();
+    // super.dispose();
   }
 
   @override

@@ -10,8 +10,10 @@ class BlogViewerPage extends StatelessWidget {
           blog: blog,
         ),
       );
+  final scrollController = ScrollController();
+
   final Blog blog;
-  const BlogViewerPage({
+  BlogViewerPage({
     super.key,
     required this.blog,
   });
@@ -21,6 +23,7 @@ class BlogViewerPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Scrollbar(
+        controller: scrollController,
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -54,7 +57,9 @@ class BlogViewerPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(blog.imageURL),
+                  child: Image.network(
+                    blog.imageURL,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Text(

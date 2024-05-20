@@ -1,3 +1,4 @@
+import 'package:blog_wave/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:blog_wave/core/common/widgets/loader.dart';
 import 'package:blog_wave/core/theme/app_pallete.dart';
 import 'package:blog_wave/core/utils/show_snackbar.dart';
@@ -20,7 +21,15 @@ class _BlogPageState extends State<BlogPage> {
   @override
   void initState() {
     super.initState();
+    fetchAllBlogs();
+  }
+
+  void fetchAllBlogs() {
     context.read<BlogBloc>().add(BlogFetchAllBlogs());
+  }
+
+  void deleteBlog(id) {
+    context.read<BlogBloc>().add(BlogDelete(id: id));
   }
 
   @override
@@ -43,6 +52,10 @@ class _BlogPageState extends State<BlogPage> {
           if (state is BlogFailure) {
             showSnackBar(context, state.error);
           }
+          if (state is BlogsDeleteSuccess) {
+            showSnackBar(context, state.message);
+            fetchAllBlogs();
+          }
         },
         builder: (context, state) {
           if (state is BlogLoading) {
@@ -54,11 +67,17 @@ class _BlogPageState extends State<BlogPage> {
               itemBuilder: (context, index) {
                 final blog = state.blogs[index];
                 return BlogCard(
-                  blog: blog,
-                  color: index % 2 == 0
-                      ? AppPallete.gradient1
-                      : AppPallete.gradient2,
-                );
+                    blog: blog,
+                    deleteBlog: deleteBlog,
+                    isDissmissable:
+                        (context.read<AppUserCubit>().state as AppUserSignedIn)
+                                .user
+                                .id ==
+                            blog.userId
+                    // color: index % 2 == 0
+                    //     ? AppPallete.gradient1
+                    //     : AppPallete.gradient2,
+                    );
               },
             );
           }
