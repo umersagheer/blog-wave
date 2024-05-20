@@ -1,35 +1,31 @@
+import 'dart:convert';
+
 import 'package:blog_wave/features/blog/data/models/blog_model.dart';
-import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract interface class BlogLocalDataSource {
-  void uploadLocalBlogs({required List<BlogModel> blogs});
+  Future<void> uploadLocalBlogs({required List<BlogModel> blogs});
   List<BlogModel> loadBlogs();
 }
 
 class BlogLocalDataSourceImpl implements BlogLocalDataSource {
-  final Box box;
-  BlogLocalDataSourceImpl(this.box);
+  final SharedPreferences prefs;
+  BlogLocalDataSourceImpl(this.prefs);
 
   @override
   List<BlogModel> loadBlogs() {
     List<BlogModel> blogs = [];
-    box.read(() {
-      for (int i = 0; i < box.length; i++) {
-        blogs.add(BlogModel.fromJson(box.get(i.toString())));
-      }
-    });
-
+    for (int i = 0; i < blogs.length; i++) {
+      blogs.add(
+          BlogModel.fromJson(jsonDecode(prefs.get(i.toString()) as String)));
+    }
     return blogs;
   }
 
   @override
-  void uploadLocalBlogs({required List<BlogModel> blogs}) {
-    box.clear();
-
-    box.write(() {
-      for (int i = 0; i < blogs.length; i++) {
-        box.put(i.toString(), blogs[i].toJson());
-      }
-    });
+  Future<void> uploadLocalBlogs({required List<BlogModel> blogs}) async {
+    for (int i = 0; i < blogs.length; i++) {
+      await prefs.setString(i.toString(), jsonEncode(blogs[i].toJson()));
+    }
   }
 }

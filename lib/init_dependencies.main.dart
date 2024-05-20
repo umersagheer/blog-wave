@@ -8,11 +8,11 @@ Future<void> initDependencies() async {
   final supabase = await Supabase.initialize(
       url: AppSecrets.supabaseUrl, anonKey: AppSecrets.supabaseKey);
 
-  Hive.defaultDirectory = (await getApplicationDocumentsDirectory()).path;
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
 
   serviceLocator.registerLazySingleton(() => supabase.client);
 
-  serviceLocator.registerLazySingleton(() => Hive.box(name: 'blogs'));
+  serviceLocator.registerLazySingleton(() => prefs);
 
   serviceLocator.registerFactory(() => InternetConnection());
   //core
@@ -80,7 +80,7 @@ void _initBlog() {
     )
     ..registerFactory<BlogLocalDataSource>(
       () => BlogLocalDataSourceImpl(
-        Hive.box(name: 'blogs'),
+        serviceLocator(),
       ),
     )
 

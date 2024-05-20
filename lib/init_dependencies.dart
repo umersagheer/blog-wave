@@ -16,9 +16,8 @@ import 'package:blog_wave/features/blog/domain/usecases/get_all_blogs.dart';
 import 'package:blog_wave/features/blog/domain/usecases/upload_blog.dart';
 import 'package:blog_wave/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hive/hive.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'init_dependencies.main.dart';
