@@ -133,7 +133,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 onPressed: () {
                   if (onLastPage) {
                     Navigator.pushAndRemoveUntil(
-                        context, BlogPage.route(), (route) => false);
+                        context, BlogPage.route(false), (route) => false);
                   }
                   _dotController.nextPage(
                       duration: const Duration(milliseconds: 500),

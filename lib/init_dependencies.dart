@@ -6,6 +6,7 @@ import 'package:blog_wave/features/auth/data/repository/auth_repository_impl.dar
 import 'package:blog_wave/features/auth/domain/repository/auth_repository.dart';
 import 'package:blog_wave/features/auth/domain/repository/usecases/current_user.dart';
 import 'package:blog_wave/features/auth/domain/repository/usecases/user_sign_in.dart';
+import 'package:blog_wave/features/auth/domain/repository/usecases/user_sign_out.dart';
 import 'package:blog_wave/features/auth/domain/repository/usecases/user_sign_up.dart';
 import 'package:blog_wave/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blog_wave/features/blog/data/datasources/blog_local_data_source.dart';

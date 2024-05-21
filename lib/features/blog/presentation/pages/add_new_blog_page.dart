@@ -43,6 +43,13 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
   }
 
   void uploadBlog() {
+    if (selectedTopics.isEmpty) {
+      showSnackBar(context, "Please Select Any Topic");
+    }
+    if (image == null) {
+      showSnackBar(context, "Please Select An Image");
+    }
+
     if (formKey.currentState!.validate() &&
         selectedTopics.isNotEmpty &&
         image != null) {
@@ -88,7 +95,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
         } else if (state is BlogUploadSuccess) {
           Navigator.pushAndRemoveUntil(
             context,
-            BlogPage.route(),
+            BlogPage.route(false),
             (route) => false,
           );
         }

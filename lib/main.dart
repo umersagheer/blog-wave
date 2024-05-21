@@ -47,7 +47,7 @@ class _MainAppState extends State<MainApp> {
         },
         builder: (context, isLoggedIn) {
           if (isLoggedIn) {
-            return const BlogPage();
+            return const BlogPage(myBlogs: false);
           } else {
             return const SignInPage();
           }

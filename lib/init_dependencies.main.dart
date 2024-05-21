@@ -42,6 +42,12 @@ void _initAuth() {
 
 // Usecases
   serviceLocator.registerFactory(
+    () => UserSignOut(
+      authRepository: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerFactory(
     () => UserSignUp(
       authRepository: serviceLocator(),
     ),
@@ -62,6 +68,7 @@ void _initAuth() {
 // Bloc
   serviceLocator.registerLazySingleton(
     () => AuthBloc(
+      userSignOut: serviceLocator(),
       userSignUp: serviceLocator(),
       userSignIn: serviceLocator(),
       currentUser: serviceLocator(),

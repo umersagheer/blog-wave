@@ -73,10 +73,12 @@ class BlogCard extends StatelessWidget {
       child: Dismissible(
         key: Key(blog.id),
         confirmDismiss: (direction) async {
-          var delete = await _dialogBuilder(context);
-          if (delete) {
-            (() => deleteBlog(blog.id))();
-            return true;
+          if (isDissmissable) {
+            var delete = await _dialogBuilder(context);
+            if (delete) {
+              (() => deleteBlog(blog.id))();
+              return true;
+            }
           }
           return false;
         },
@@ -113,7 +115,11 @@ class BlogCard extends StatelessWidget {
                           .map(
                             (e) => Padding(
                               padding: const EdgeInsets.all(5.0),
-                              child: Chip(label: Text(e)),
+                              child: Chip(
+                                label: Text(e),
+                                color: MaterialStatePropertyAll(
+                                    Colors.purple[700]),
+                              ),
                             ),
                           )
                           .toList(),
@@ -133,7 +139,7 @@ class BlogCard extends StatelessWidget {
                 children: [
                   Text('${calculateReadingTime(blog.content)} min'),
                   CircleAvatar(
-                    backgroundColor: AppPallete.borderColor,
+                    backgroundColor: AppPallete.gradient2,
                     child: Text(blog.posterName!.split(' ').first[0] +
                             blog.posterName!.split(' ').last[0] ??
                         "AN"),
