@@ -9,9 +9,7 @@ import 'package:blog_wave/features/blog/domain/entitites/blog.dart';
 import 'package:blog_wave/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:blog_wave/features/blog/presentation/pages/add_new_blog_page.dart';
 import 'package:blog_wave/features/blog/presentation/widgets/blog_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BlogPage extends StatefulWidget {
@@ -148,6 +146,11 @@ class _BlogPageState extends State<BlogPage> {
                 context,
                 SignInPage.route(),
                 (route) => false,
+              );
+            } else if (state is AuthFailure) {
+              showSnackBar(
+                context,
+                state.message,
               );
             }
           },

@@ -25,6 +25,7 @@ class BlogViewerPage extends StatelessWidget {
       body: Scrollbar(
         controller: scrollController,
         child: SingleChildScrollView(
+          controller: scrollController,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
